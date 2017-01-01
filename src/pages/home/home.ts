@@ -117,7 +117,7 @@ export class HomePage {
 
     loadMore(): void
     {
-        console.log("TODO: Implement loadMore()");
+        this.redditService.nextPage();
 
     }
 
