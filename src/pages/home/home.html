@@ -1,14 +1,57 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+
+    <ion-navbar color="secondary">
+
+        <ion-title>
+
+            <ion-searchbar color="primary" placeholder="Enter subreddit name...">
+
+            </ion-searchbar>
+
+            <ion-buttons end>
+
+                <button ion-button icon-only (click)="openSettings()">
+
+                    <ion-icon name="settings">
+
+                    </ion-icon>
+
+                </button>
+
+            </ion-buttons>
+
+        </ion-title>
+
+    </ion-navbar>
+
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+<ion-content>
+
+    <ion-list>
+
+        <ion-item no-lines>
+
+            GIF GOES HERE
+
+        </ion-item>
+
+        <ion-list-header>
+
+            TITLE GOES HERE
+
+        </ion-list-header>
+
+        <ion-item * *ngif="redditService.loading" no-lines style="text-align: center;">
+
+            <img src="assets/images/loader.gif" style="width: 50px;"/>
+
+        </ion-item>
+
+
+    </ion-list>
+
+    <button ion-button full color="light" (click)="loadMore()">Load More...</button>
+
 </ion-content>
