@@ -62,7 +62,7 @@ export class HomePage {
     loadSettings():void
     {
 
-        console.log("TODO: Implement loadSettings()");
+        this.redditService.fetchData();
 
     }
 
@@ -83,7 +83,27 @@ export class HomePage {
     playVideo(e, post):void
     {
 
-        console.log("TODO: Implement playVideo()");
+        let video = e.target;
+
+        if (!post.alreadyLoaded)
+        {
+            post.showLoader = true;
+        }
+
+        if (video.paused)
+        {
+            video.play();
+
+            video.addEventListener("playing", function(e){
+                post.showLoader = false;
+                post.alreadyLoaded = true;
+            });
+        }
+        else
+        {
+            video.pause();
+
+        }
 
     }
 

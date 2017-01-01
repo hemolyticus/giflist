@@ -1,69 +1,37 @@
 <ion-header>
-
     <ion-navbar color="secondary">
 
         <ion-title>
-
-            <ion-searchbar color="primary"
-                           placeholder="Enter subreddit name..."
-                           [(ngModel)]="subredditValue"
-                           [formControl]="subredditControl"
-                           value="">
-
-            </ion-searchbar>
-
-            <ion-buttons end>
-
-                <button ion-button icon-only (click)="openSettings()">
-
-                    <ion-icon name="settings">
-
-                    </ion-icon>
-
-                </button>
-
-            </ion-buttons>
-
+            <ion-searchbar color="primary" placeholder="enter subreddit name..." [(ngModel)]="subredditValue" [formControl]="subredditControl" value=""></ion-searchbar>
         </ion-title>
 
+        <ion-buttons end>
+            <button ion-button icon-only (click)="openSettings()"><ion-icon name="settings"></ion-icon></button>
+        </ion-buttons>
+
     </ion-navbar>
-
 </ion-header>
-
 
 <ion-content>
 
     <ion-list>
-
-        <div *ngFor="let post of reddditService.posts">
-
-            <ion-item (click) ="playVideo($event, post)" no-lines
-            style="background-color: #000;">
-
-                <img src = "assets/images/loader.gif" * *ngif="posts.showLoader"/>
-
-                <video loop [src]="posts.data.url" [poster]="post.data.snapshot">
-
+        <div *ngFor="let post of redditService.posts">
+            <ion-item (click)="playVideo($event, post)" no-lines style="background-color: #000;">
+                <img src="assets/images/loader.gif" *ngIf="post.showLoader" class="video-loader" />
+                <video loop [src]="post.data.url" [poster]="post.data.snapshot">
                 </video>
-
             </ion-item>
-
-            <ion-list-header (click)="showComments(post)" style="text-align:left;">
-
+            <ion-list-header (click)="showComments(post)" style="text-align: left;">
                 {{post.data.title}}
-
             </ion-list-header>
-
         </div>
 
         <ion-item *ngIf="redditService.loading" no-lines style="text-align: center;">
-
-            <img src="assets/images/loader.gif" style="width: 50px"/>
-
+            <img src="assets/images/loader.gif" style="width: 50px" />
         </ion-item>
 
     </ion-list>
 
-    <button ion-button full color="light" (click)="loadMore()">Load More...</button>
+    <button ion-button color="light" full (click)="loadMore()">Load More...</button>
 
 </ion-content>
