@@ -77,7 +77,32 @@ export class HomePage {
     openSettings(): void
     {
 
-        console.log("TODO: Implement openSettings()");
+        let settingsModal = this.modalCtrl.create(SettingsPage,
+            {
+
+                perPage: this.redditService.perPage,
+                sort: this.redditService.sort,
+                subreddit: this.redditService.subreddit
+
+            });
+
+        settingsModal.onDidDismiss(settings =>
+        {
+
+            if (settings)
+            {
+
+                this.redditService.perPage = settings.perPage;
+                this.redditService.sort = settings.sort;
+                this.redditService.subreddit = settings.subreddit;
+
+                this.changeSubreddit();
+
+            }
+
+        });
+
+        settingsModal.present()
 
     }
 
@@ -111,8 +136,7 @@ export class HomePage {
     changeSubreddit(): void
     {
 
-        console.log("TODO: Implement changeSubreddit()");
-
+        this.redditService.resetPosts();
     }
 
     loadMore(): void
