@@ -19,15 +19,36 @@ export class HomePage {
 
     //Variables
     subredditValue:string;
+    subredditControl: FormControl;
 
     //Constructor
     constructor(public dataService: Data, public redditService: Reddit, public modalCtrl: ModalController, public platform:Platform)
     {
-    
+
+        this.subredditControl = new FormControl();
+
     }
 
     ionViewDidLoad()
     {
+        this.subredditControl.valueChanges.debounceTime(1500).distinctUntilChanged().subscribe
+        (
+
+            subreddit =>
+            {
+
+                if (subreddit != '' && subreddit)
+                {
+
+                    this.redditService.subreddit = subreddit;
+                    this.changeSubreddit();
+                    Keyboard.close();
+
+                }
+
+            }
+
+        );
 
         this.platform.ready().then(()=>
         {
