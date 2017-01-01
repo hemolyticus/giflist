@@ -8,6 +8,7 @@ import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import { InAppBrowser } from 'ionic-native';
 
 @Component({
   selector: 'page-home',
@@ -69,7 +70,7 @@ export class HomePage {
     showComments(post):void
     {
 
-        console.log("TODO: Implement showComments()");
+        let browser = new InAppBrowser('http://reddit.com' + post.data.permalink, '_system');
 
     }
 
