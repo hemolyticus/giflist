@@ -4,7 +4,11 @@
 
         <ion-title>
 
-            <ion-searchbar color="primary" placeholder="Enter subreddit name...">
+            <ion-searchbar color="primary"
+                           placeholder="Enter subreddit name..."
+                           [(ngModel)]="subredditValue"
+                           [formControl]="subredditControl"
+                           value="">
 
             </ion-searchbar>
 
