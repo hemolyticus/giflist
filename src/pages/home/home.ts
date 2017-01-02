@@ -63,7 +63,31 @@ export class HomePage {
     loadSettings():void
     {
 
-        this.redditService.fetchData();
+        this.dataService.getData().then((settings) =>
+        {
+
+            if (settings && typeof(settings) != undefined)
+            {
+
+                let newSettings = JSON.parse(settings);
+                this.redditService.settings = newSettings;
+
+                if (newSettings.length != 0)
+                {
+
+                    this.redditService.sort = newSettings.sort;
+                    this.redditService.perPage = newSettings.perPage;
+                    this.redditService.subreddit = newSettings.subreddit;
+
+
+                }
+
+
+            }
+
+
+            this.changeSubreddit()
+        });
 
     }
 
@@ -95,6 +119,9 @@ export class HomePage {
                 this.redditService.perPage = settings.perPage;
                 this.redditService.sort = settings.sort;
                 this.redditService.subreddit = settings.subreddit;
+
+                this.dataService.save(settings);
+
 
                 this.changeSubreddit();
 
